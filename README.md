@@ -1,2 +1,2 @@
 # funnyanimals
- App with MVVM, RxJava, Dagger2, Navigation to show some animals and details. Exercise purpose
+ App with MVVM, RxJava, Dagger2, Navigation, Room. To show some animals and details. Exercise purpose.
