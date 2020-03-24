@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.sandoval.funnyanimals.model.Animal
 import com.sandoval.funnyanimals.model.Key
 import com.sandoval.funnyanimals.model.service.AnimalApiService
+import com.sandoval.funnyanimals.util.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -17,10 +18,23 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     val loading by lazy { MutableLiveData<Boolean>() }
 
     private val disposable: CompositeDisposable = CompositeDisposable()
-
     private val apiService = AnimalApiService()
 
+    private val prefs = SharedPreferencesHelper(getApplication())
+    private var invalidApiKey: Boolean = false
+
     fun refresh() {
+        loading.value = true
+        invalidApiKey = false
+        val key = prefs.getApiKey()
+        if (key.isNullOrEmpty()) {
+            getKey()
+        } else {
+            getAnimals(key)
+        }
+    }
+
+    fun hardRefresh(){
         loading.value = true
         getKey()
     }
@@ -35,13 +49,21 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
                         if (key.key.isNullOrEmpty()) {
                             loadError.value = true
                             loading.value = false
-                        } else getAnimals(key.key)
+                        } else {
+                            prefs.saveApiKey(key.key)
+                            getAnimals(key.key)
+                        }
                     }
 
                     override fun onError(e: Throwable) {
-                        e.printStackTrace()
-                        loading.value = false
-                        loadError.value = true
+                        if (!invalidApiKey) {
+                            invalidApiKey = true
+                            getKey()
+                        } else {
+                            e.printStackTrace()
+                            loading.value = false
+                            loadError.value = true
+                        }
                     }
 
                 })
