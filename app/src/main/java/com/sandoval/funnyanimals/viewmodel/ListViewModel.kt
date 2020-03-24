@@ -3,6 +3,10 @@ package com.sandoval.funnyanimals.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.sandoval.funnyanimals.di.modules.AppModule
+import com.sandoval.funnyanimals.di.component.DaggerViewModelComponent
+import com.sandoval.funnyanimals.di.modules.CONTEXT_APP
+import com.sandoval.funnyanimals.di.modules.TypeOfContext
 import com.sandoval.funnyanimals.model.Animal
 import com.sandoval.funnyanimals.model.Key
 import com.sandoval.funnyanimals.model.service.AnimalApiService
@@ -11,6 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class ListViewModel(application: Application) : AndroidViewModel(application) {
     val animals by lazy { MutableLiveData<List<Animal>>() }
@@ -18,10 +23,23 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     val loading by lazy { MutableLiveData<Boolean>() }
 
     private val disposable: CompositeDisposable = CompositeDisposable()
-    private val apiService = AnimalApiService()
 
-    private val prefs = SharedPreferencesHelper(getApplication())
+    @Inject
+    lateinit var apiService: AnimalApiService
+
+    @Inject
+    @field:TypeOfContext(CONTEXT_APP)
+    lateinit var prefs: SharedPreferencesHelper
+
     private var invalidApiKey: Boolean = false
+
+    init {
+        DaggerViewModelComponent.builder().appModule(
+            AppModule(
+                application
+            )
+        ).build().inject(this)
+    }
 
     fun refresh() {
         loading.value = true
@@ -34,7 +52,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun hardRefresh(){
+    fun hardRefresh() {
         loading.value = true
         getKey()
     }
