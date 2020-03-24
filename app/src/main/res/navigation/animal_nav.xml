@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.sandoval.funnyanimals.view.fragments.ListFragment"
-        android:label="fragment_list"
+        android:label="Funny Animal List"
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/actionDetail"
@@ -17,10 +17,13 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.sandoval.funnyanimals.view.fragments.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Animal Detail"
         tools:layout="@layout/fragment_detail" >
         <action
             android:id="@+id/actionList"
             app:destination="@id/listFragment" />
+        <argument
+            android:name="animalArg"
+            app:argType="com.sandoval.funnyanimals.model.Animal" />
     </fragment>
 </navigation>

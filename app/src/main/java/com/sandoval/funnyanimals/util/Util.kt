@@ -2,6 +2,7 @@ package com.sandoval.funnyanimals.util
 
 import android.content.Context
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -10,6 +11,7 @@ import com.sandoval.funnyanimals.R
 fun getProgressDrawable(context: Context): CircularProgressDrawable {
     return CircularProgressDrawable(context).apply {
         strokeWidth = 10f
+        setColorSchemeColors(ContextCompat.getColor(context, R.color.colorAccent))
         centerRadius = 50f
         start()
     }

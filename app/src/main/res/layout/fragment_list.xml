@@ -9,6 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/backgroundColorDark"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
             android:text="@string/error_list_animals"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

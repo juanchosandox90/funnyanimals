@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/animalLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundColorDark">
 
     <ImageView
         android:id="@+id/animalImage"
@@ -16,10 +18,11 @@
         android:src="@mipmap/ic_launcher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/app_name" />
 
     <TextView
-        android:id="@+id/animalName"
+        android:id="@+id/animalNameDetail"
         style="@style/Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -27,11 +30,12 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:padding="4dp"
-        android:text="Animal Name"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/animalImage"
         app:layout_constraintStart_toStartOf="@+id/animalImage"
-        app:layout_constraintTop_toBottomOf="@+id/animalImage" />
+        app:layout_constraintTop_toBottomOf="@+id/animalImage"
+        tools:text="Animal Name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

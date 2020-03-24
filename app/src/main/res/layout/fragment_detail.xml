@@ -4,8 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColorDark"
     tools:context=".view.fragments.DetailFragment">
 
+    <ImageView
+        android:id="@+id/animalImageDetail"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="64dp"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/animalNameDetail"
+        style="@style/Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/animalImageDetail"
+        app:layout_constraintStart_toStartOf="@+id/animalImageDetail"
+        app:layout_constraintTop_toBottomOf="@+id/animalImageDetail"
+        tools:text="Animal Name" />
+
+    <TextView
+        android:id="@+id/animalLocationDetail"
+        style="@style/Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/animalNameDetail"
+        app:layout_constraintStart_toStartOf="@+id/animalNameDetail"
+        app:layout_constraintTop_toBottomOf="@+id/animalNameDetail"
+        tools:text="Animal Location" />
+
+    <TextView
+        android:id="@+id/animalLifespanDetail"
+        style="@style/Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/animalLocationDetail"
+        app:layout_constraintStart_toStartOf="@+id/animalLocationDetail"
+        app:layout_constraintTop_toBottomOf="@+id/animalLocationDetail"
+        tools:text="Animal Lifespan" />
+
+    <TextView
+        android:id="@+id/animalDietDetail"
+        style="@style/Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/animalLifespanDetail"
+        app:layout_constraintStart_toStartOf="@+id/animalLifespanDetail"
+        app:layout_constraintTop_toBottomOf="@+id/animalLifespanDetail"
+        tools:text="Animal Diet" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
