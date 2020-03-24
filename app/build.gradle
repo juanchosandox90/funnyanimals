@@ -71,4 +71,6 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test:runner:$testRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    implementation "androidx.preference:preference-ktx:$preferenceKtxVersion"
+    implementation "androidx.preference:preference:$preferenceManageVersion"
 }
