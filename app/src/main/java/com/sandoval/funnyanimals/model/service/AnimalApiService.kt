@@ -1,28 +1,27 @@
 package com.sandoval.funnyanimals.model.service
 
+import com.sandoval.funnyanimals.di.component.DaggerApiComponent
 import com.sandoval.funnyanimals.model.Animal
 import com.sandoval.funnyanimals.model.Key
 import com.sandoval.funnyanimals.model.api.AnimalApi
 import io.reactivex.Single
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 class AnimalApiService {
-    private val BASE_URL = "https://us-central1-apis-4674e.cloudfunctions.net/"
 
-    private val apiAnimalService = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create()) // JSON A Objects
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // Objects to Observables
-        .build()
-        .create(AnimalApi::class.java)
+    @Inject
+    lateinit var api: AnimalApi
+
+    init {
+        DaggerApiComponent.create()
+            .inject(this)
+    }
 
     fun getApiKey(): Single<Key> {
-        return apiAnimalService.getApiKey()
+        return api.getApiKey()
     }
 
     fun getAnimals(key: String): Single<List<Animal>> {
-        return apiAnimalService.getAnimals(key)
+        return api.getAnimals(key)
     }
 }
