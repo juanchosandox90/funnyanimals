@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">funnyanimals</string>
+    <string name="app_name">Funny Animals</string>
+    <string name="error_list_animals">An error occurred while loading data</string>
 </resources>

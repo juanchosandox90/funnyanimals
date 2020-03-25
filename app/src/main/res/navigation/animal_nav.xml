@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/animal_nav"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.sandoval.funnyanimals.view.fragments.ListFragment"
+        android:label="Funny Animal List"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/actionDetail"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.sandoval.funnyanimals.view.fragments.DetailFragment"
+        android:label="Animal Detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/actionList"
+            app:destination="@id/listFragment" />
+        <argument
+            android:name="animalArg"
+            app:argType="com.sandoval.funnyanimals.model.Animal" />
+    </fragment>
+</navigation>
